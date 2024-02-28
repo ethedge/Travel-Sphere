@@ -1,0 +1,27 @@
+name: PHP_CodeSniffer
+
+on:
+  pull_request:
+    branches: [main]  # Adjust the branch name if needed
+
+jobs:
+  phpcs:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Use PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.1'  # Adjust PHP version if needed
+
+      - name: Change to correct directory
+        run: cd C:\Users\ethan\OneDrive\Documents\xampp\htdocs\phpBB3
+        
+      - name: Install Composer dependencies
+        run: composer install --no-progress --no-suggest --prefer-dist
+
+      - name: Run PHP_CodeSniffer
+        run: vendor/bin/phpcs
